@@ -1,0 +1,36 @@
+<h4>{{pageTitle}}</h4>
+<h5>Search contact</h5>
+<form class="form-inline" role="form">
+	<div class="form-group">
+		<label class="sr-only" for="txtsearchbox">Enter Name</label>
+		<input type="text" class="form-control" placeholder="Enter Name" [(ngModel)]='contactFilter' value='a'>
+	</div>
+</form>
+
+<div *ngIf='!contacts'>
+    <h4>No data available</h4>
+</div>
+
+<div class="table-responsive" *ngIf='contacts && contacts.length'>
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>E-mail</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor='#contact of contacts | searchContact:contactFilter'>
+				<td><a [routerLink]="['ViewContact',{id: contact.id}]">
+                    	{{contact.name}}
+                    </a></td>
+				<td>{{contact.email}}</td>
+				<td>
+					<a [routerLink]="['EditContact',{id: contact.id}]" class="btn btn-primary">Edit</a> 
+					<input type="button" class="btn btn-primary" value="Delete" (click)="confirmDel(contact.id)"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
