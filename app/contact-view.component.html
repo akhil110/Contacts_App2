@@ -1,0 +1,21 @@
+<h4>{{pageTitle}}</h4>
+
+<div class="panel panel-default" *ngFor = '#contact of contacts'>
+	<div class="panel-heading">{{contact.name}}</div>
+	<div class="panel-body">
+		<address >
+			<strong>Address</strong><br>
+			{{contact.add1}}<br>
+			{{contact.add2}} {{contact.city}} {{contact.state}}<br>
+			{{contact.country}} {{contact.zip}}<br><br>
+			<strong>Phone</strong><br>
+			{{contact.phone}}<br><br>
+			<strong>Email</strong><br>
+			<a href="mailto:{{contact.email}}">{{contact.email}}</a>
+		</address>
+		
+		<a class='btn btn-default' (click)='onBack()' style='width:80px'>
+            <i class='glyphicon glyphicon-chevron-left'></i> Back
+        </a>
+	</div>
+</div>
