@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+            <li><a [routerLink]="['AllContacts']">All Contacts</a></li>
+            <li><a [routerLink]="['AddContacts']">Add Contacts</a></li> 
+        </ul>
+        
+        <h3>Address Book</h3>
+    </div>
+    <hr>
+
+    <router-outlet></router-outlet>
+
+    <hr>
+    <div class="footer">
+        <p>&copy; Address Book 2016</p>
+    </div>
+
+</div>
