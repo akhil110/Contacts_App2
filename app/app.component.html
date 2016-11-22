@@ -1,12 +1,8 @@
-<style>
-    .router-link-active {background-color: #DFF0FF}
-</style>
-
 <div class="container">
     <div class="header">
         <ul class="nav nav-pills pull-right">
-            <li><a [routerLink]="['AllContacts']">All Contacts</a></li>
-            <li><a [routerLink]="['AddContacts']">Add Contacts</a></li> 
+            <li><a routerLink="allcontacts" routerLinkActive="active">All Contacts</a></li>
+            <li><a routerLink="addcontacts" routerLinkActive="active">Add Contacts</a></li> 
         </ul>
         
         <h3>Address Book</h3>
