@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { IContact } from './contact';
 
 @Injectable()
 export class ContactService {
     constructor(private _http: Http) { }
 
-    getContact(id) {
+    getContact(id): Observable<IContact[]> {
         return this._http.get('http://localhost/contact-app/contacts.cfc?method=getContacts&contactid=' + id)
-            .map((response: Response) =>  response.json())
+            .map((response: Response) => <IContact[]> response.json())
             //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
     
-    getContacts() {
+    getContacts(): Observable<IContact[]> {
         return this._http.get('http://localhost/contact-app/contacts.cfc?method=getContacts')
-            .map((response: Response) => response.json())
-            .do(data => console.log('All: ' +  JSON.stringify(data)))
+            .map((response: Response) => <IContact[]> response.json())
+            //.do(data => console.log('All: ' +  JSON.stringify(data)))
             .catch(this.handleError);
     }
 
