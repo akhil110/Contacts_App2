@@ -3,7 +3,7 @@
 <form class="form-inline" role="form">
 	<div class="form-group">
 		<label class="sr-only" for="txtsearchbox">Enter Name</label>
-		<input type="text" class="form-control" placeholder="Enter Name" [(ngModel)]='contactFilter' value='a'>
+		<input type="text" class="form-control" placeholder="Enter Name" [(ngModel)]='contactFilter' [ngModelOptions]="{standalone: true}">
 	</div>
 </form>
 
@@ -21,16 +21,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor='#contact of contacts | searchContact:contactFilter'>
-				<td><a [routerLink]="['ViewContact',{id: contact.id}]">
+			<tr *ngFor='let contact of contacts | searchContact:contactFilter'>
+				<td><a [routerLink]="['/viewcontact', contact.id]">
                     	{{contact.name}}
                     </a></td>
 				<td>{{contact.email}}</td>
 				<td>
-					<a [routerLink]="['EditContact',{id: contact.id}]" class="btn btn-primary">Edit</a> 
+					<a [routerLink]="['/editcontact', contact.id]" class="btn btn-primary">Edit</a> 
 					<input type="button" class="btn btn-primary" value="Delete" (click)="confirmDel(contact.id)"></td>
 			</tr>
 		</tbody>
 	</table>
 </div>
-
