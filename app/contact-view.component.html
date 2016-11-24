@@ -1,6 +1,6 @@
 <h4>{{pageTitle}}</h4>
 
-<div class="panel panel-default" *ngFor = '#contact of contacts'>
+<div class="panel panel-default" *ngFor = 'let contact of contacts'>
 	<div class="panel-heading">{{contact.name}}</div>
 	<div class="panel-body">
 		<address >
