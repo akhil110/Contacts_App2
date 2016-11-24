@@ -1,18 +1,16 @@
 import { Component, OnInit }  from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router-deprecated';
 import { ContactService } from './contact.service';
+import { IContact } from './contact';
 import { SearchFilterPipe } from './contact-filter.pipe'
 
 @Component({
-    templateUrl: 'app/contact-list.component.html',
-    pipes: [SearchFilterPipe],
-    directives: [ROUTER_DIRECTIVES]
+    templateUrl: 'app/contact-list.component.html'
 })
 
 export class ContactListComponent implements OnInit {
     pageTitle: string = 'View all contacts';
     errorMessage: string;
-    contacts: any;
+    contacts: IContact[];
 
     constructor(private _contactService: ContactService){}
 
@@ -35,6 +33,6 @@ export class ContactListComponent implements OnInit {
                          error =>  this.errorMessage = <any>error
                     );
             });
-		} 
+	} 
     }
 }
