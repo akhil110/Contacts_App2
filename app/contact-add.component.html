@@ -9,7 +9,8 @@
 			<div class="form-group" [ngClass]="{'has-error': name.touched && !name.valid }">
 				<label for="name" class="col-sm-2 control-label">Name</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" maxlength="100" placeholder="Enter name" required ngControl="name" #name="ngForm" [(ngModel)]="contact.name">
+					<input type="text" class="form-control" maxlength="100" placeholder="Enter name" required name="name"
+					 #name="ngModel" [(ngModel)]="contact.name">
 					<span *ngIf="name.touched && name.errors" class="text-danger">
 						<span *ngIf="name.errors.required">Enter contact name</span>
 					</span>
@@ -19,7 +20,7 @@
 			<div class="form-group" [ngClass]="{'has-error': email.touched && !email.valid }">
 				<label for="email" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-10">
-					<input type="email" class="form-control" maxlength="100" placeholder="Enter email" required pattern="^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$" ngControl="email" #email="ngForm" [(ngModel)]="contact.email">
+					<input type="email" class="form-control" maxlength="100" placeholder="Enter email" required pattern="^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$" name="email" #email="ngModel" [(ngModel)]="contact.email">
 					<span *ngIf="email.touched && email.errors" class="text-danger">
 						<span *ngIf="email.errors.required">Enter email</span>
 						<span *ngIf="email.errors.pattern">Enter a valid email</span>
@@ -30,7 +31,7 @@
 			<div class="form-group" [ngClass]="{'has-error': phone.touched && !phone.valid }">
 				<label for="phone" class="col-sm-2 control-label">Phone</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" maxlength="20" placeholder="Enter phone" required pattern="^[0-9]*$" ngControl="phone" #phone="ngForm" [(ngModel)]="contact.phone">
+					<input type="text" class="form-control" maxlength="20" placeholder="Enter phone" required pattern="^[0-9]*$" #phone="ngModel" name="phone" [(ngModel)]="contact.phone">
 					<span *ngIf="phone.touched && phone.errors" class="text-danger">
 						<span *ngIf="phone.errors.required">Enter phone</span>
 						<span *ngIf="phone.errors.pattern">Enter a valid phone</span>
@@ -41,7 +42,7 @@
 			<div class="form-group" [ngClass]="{'has-error': add1.touched && !add1.valid }">
 				<label for="add1" class="col-sm-2 control-label">Address</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" maxlength="50" placeholder="Enter address" required ngControl="add1" #add1="ngForm" [(ngModel)]="contact.add1">
+					<input type="text" class="form-control" maxlength="50" placeholder="Enter address" required name="add1" #add1="ngModel" [(ngModel)]="contact.add1">
 					<span *ngIf="add1.touched && add1.errors" class="text-danger">
 						<span *ngIf="add1.errors.required">Enter address</span>
 					</span>
@@ -51,14 +52,14 @@
 			<div class="form-group">
 				<label for="add2" class="col-sm-2 control-label">&nbsp;</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="add2" maxlength="50" placeholder="Enter address" ngControl="add2" #add2="ngForm" [(ngModel)]="contact.add2">
+					<input type="text" class="form-control" name="add2" maxlength="50" placeholder="Enter address" name="add2" #add2="ngModel" [(ngModel)]="contact.add2">
 				</div>
 			</div>
 			
 			<div class="form-group" [ngClass]="{'has-error': city.touched && !city.valid }">
 				<label for="city" class="col-sm-2 control-label">City</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="city" maxlength="50" placeholder="Enter city" required ngControl="city" #city="ngForm" [(ngModel)]="contact.city">
+					<input type="text" class="form-control" name="city" maxlength="50" placeholder="Enter city" required name="city" #city="ngModel" [(ngModel)]="contact.city">
 					<span *ngIf="city.touched && city.errors" class="text-danger">
 						<span *ngIf="city.errors.required">Enter city</span>
 					</span>
@@ -68,7 +69,7 @@
 			<div class="form-group" [ngClass]="{'has-error': state.touched && !state.valid }">
 				<label for="state" class="col-sm-2 control-label">State</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="state" maxlength="50" placeholder="Enter state" required ngControl="state" #state="ngForm" [(ngModel)]="contact.state">
+					<input type="text" class="form-control" name="state" maxlength="50" placeholder="Enter state" required name="state" #state="ngModel" [(ngModel)]="contact.state">
 					<span *ngIf="state.touched && state.errors" class="text-danger">
 						<span *ngIf="state.errors.required">Enter state</span>
 					</span>
@@ -78,7 +79,7 @@
 			<div class="form-group" [ngClass]="{'has-error': country.touched && !country.valid }">
 				<label for="country" class="col-sm-2 control-label">Country</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="country" maxlength="50" placeholder="Enter country" required ngControl="country" #country="ngForm" [(ngModel)]="contact.country">
+					<input type="text" class="form-control" name="country" maxlength="50" placeholder="Enter country" required name="country" #country="ngModel" [(ngModel)]="contact.country">
 					<span *ngIf="country.touched && country.errors" class="text-danger">
 						<span *ngIf="country.errors.required">Enter country</span>
 					</span>
@@ -88,7 +89,7 @@
 			<div class="form-group" [ngClass]="{'has-error': zip.touched && !zip.valid }">
 				<label for="zip" class="col-sm-2 control-label">Zip</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="zip" maxlength="10" placeholder="Enter zip" required  pattern="^[0-9]*$" ngControl="zip" #zip="ngForm" [(ngModel)]="contact.zip">
+					<input type="text" class="form-control" name="zip" maxlength="10" placeholder="Enter zip" required  pattern="^[0-9]*$" name="zip" #zip="ngModel" [(ngModel)]="contact.zip">
 					<span *ngIf="zip.touched && zip.errors" class="text-danger">
 						<span *ngIf="zip.errors.required">Enter zip</span>
 						<span *ngIf="zip.errors.pattern">Enter a valid zip</span>
@@ -105,4 +106,3 @@
 		
 	</div>
 </div>
-			
