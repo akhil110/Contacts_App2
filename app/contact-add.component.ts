@@ -1,40 +1,45 @@
 import { Component, OnInit }  from '@angular/core';
-import { Router, RouteParams } from '@angular/router-deprecated';
-import { ControlGroup } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { IContact } from './contact';
 import { ContactService } from './contact.service';
 
 
 @Component({
     templateUrl: 'app/contact-add.component.html'
 })
+
 export class ContactAddComponent {
     pageTitle: string = "Add Contact";
     
-    contact: any;
+    contact: IContact = {
+        id:0,
+        name: '',
+        email: '',
+        phone: '',
+        add1: '',
+        add2: '',
+        city: '',
+        state: '',
+        country: '',
+        zip: ''
+    }
     errorMessage: string;
-  
- 
-    constructor(private _router : Router, private _routeParams: RouteParams, private _contactService: ContactService){}  
+    id:number;
+
+    constructor( private _route: ActivatedRoute,
+        private _router: Router,
+        private _contactService: ContactService){
+    }
+
     
     ngOnInit(): void {
-        let id = this._routeParams.get('id');
-        this.contact={
-            'id':0,
-            'name': '',
-            'email':'',
-            'phone': '',
-            'add1': '',
-            'add2': '',
-            'city': '',
-            'state': '',
-            'country': '',
-            'zip': ''
-        };
-        
-        if(id != null){
+        this.id = this._route.snapshot.params['id'];
+       
+        if(this.id != null){
            this.pageTitle = "Edit Contact"
-           this._contactService.getContact(id)
-           .subscribe((data) => {
+           this._contactService.getContact(this.id)
+            .subscribe((data) => {
                this.contact.id = data[0].id;
                this.contact.name = data[0].name;
                this.contact.email = data[0].email;
@@ -45,22 +50,22 @@ export class ContactAddComponent {
                this.contact.state = data[0].state;
                this.contact.country = data[0].country;
                this.contact.zip = data[0].zip;
-           })
+           });
         }
     }
     
-    saveContact(contactForm: ControlGroup) {
-        if (contactForm.dirty && contactForm.valid) {
+    saveContact(form: NgForm) {
+        if (form.dirty && form.valid) {
            
-           if(this.contact.id == 0){
-              this._contactService.addContact(contactForm.value)
+           if(this.id == null){
+              this._contactService.addContact(form.value)
                 .subscribe(() => {
-                    contactForm = null;
+                    form = null;
                     alert('Contact saved successfully');
-                    this._router.navigate(['AllContacts']);
+                    this._router.navigate(['allcontacts']);
                 }); 
            }else{
-               this._contactService.editContact(contactForm.value, this.contact.id)
+               this._contactService.editContact(form.value, this.id)
                .subscribe(()=>{
                    alert("Contact updated successfully");
                })
